@@ -17,36 +17,40 @@ public enum ExtraItem
 		.asList(), true),
 
 	COFFEE_BEANS(Material.COCOA_BEANS, ChatColor.RED + "Coffee Beans", Arrays
-			.asList(ChatColor.GREEN + "Used to make coffee!"), Arrays
-			.asList(Material.COOKIE), false),
+		.asList(ChatColor.GREEN + "Used to make coffee!"), Arrays
+		.asList(Material.COOKIE), false),
 	
 	COFFEE_CUP(Material.POTION, ChatColor.RED + "Coffee Cup", Arrays
-			.asList(ChatColor.GREEN + "Keeps u focussed and productive!"), Arrays
-			.asList(), true),
+		.asList(ChatColor.GREEN + "Keeps u focussed and productive!"), Arrays
+		.asList(), true),
 	
 	WEED(Material.SEAGRASS, ChatColor.RED + "Weed", Arrays
-			.asList(ChatColor.GREEN + "Snoop dogg loves this!"), Arrays
-			.asList(), true),
+		.asList(ChatColor.GREEN + "Snoop dogg loves this!"), Arrays
+		.asList(), true),
 	
 	COCAINE(Material.SUGAR, ChatColor.RED + "Cocaine", Arrays
-			.asList(ChatColor.GREEN + "WOAAAAAAAAAAAAHHHHHHHHHRGH!"), Arrays
-			.asList(Material.CAKE), true),
+		.asList(ChatColor.GREEN + "WOAAAAAAAAAAAAHHHHHHHHHRGH!"), Arrays
+		.asList(Material.CAKE), true),
 	
 	LSD(Material.LINGERING_POTION, ChatColor.RED + "LSD", Arrays
-			.asList(ChatColor.GREEN + "Make love, not war!"), Arrays
-			.asList(), true),
-	
+		.asList(ChatColor.GREEN + "Make love, not war!"), Arrays
+		.asList(), true),
+
+	ECSTASY(Material.AMETHYST_CLUSTER, ChatColor.RED + "Ecstasy", Arrays
+		.asList(ChatColor.GREEN + "Artificial hapiness, but with a price."), Arrays
+		.asList(Material.SPYGLASS), true),
+
 	CHEESE(Material.YELLOW_WOOL, ChatColor.RED + "Cheese", Arrays
-			.asList(ChatColor.GREEN + "Cheese for making pizza"), Arrays
-			.asList(Material.YELLOW_BANNER, Material.YELLOW_BED), false),
+		.asList(ChatColor.GREEN + "Cheese for making pizza"), Arrays
+		.asList(Material.YELLOW_BANNER, Material.YELLOW_BED), false),
 	
 	TOMATO(Material.BEETROOT, ChatColor.RED + "Tomato", Arrays
-			.asList(ChatColor.GREEN + "Tomato for making pizza"), Arrays
-			.asList(), false),
+		.asList(ChatColor.GREEN + "Tomato for making pizza"), Arrays
+		.asList(), false),
 	
 	PIZZA(Material.PUMPKIN_PIE, ChatColor.RED + "Pizza", Arrays
-			.asList(ChatColor.GREEN + "Pizza for the hungry <3"), Arrays
-			.asList(), false);
+		.asList(ChatColor.GREEN + "Pizza for the hungry <3"), Arrays
+		.asList(), false);
 
 	private Material material; // Which original-material is the custom one
 	private String displayName; // What is the name of the custom material

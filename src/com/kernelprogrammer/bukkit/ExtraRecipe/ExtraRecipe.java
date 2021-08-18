@@ -1,6 +1,4 @@
 package com.kernelprogrammer.bukkit.ExtraRecipe;
-import com.kernelprogrammer.bukkit.ExtraRecipe.ShapelessCustomRecipe;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
@@ -11,15 +9,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.NamespacedKey;
+import org.bukkit.WorldCreator;
 
 /**
  * Drug cooking plugin for Bukkit
@@ -32,29 +31,57 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 	private NamespacedKey cokeRecipeKey;
 	private NamespacedKey weedRecipeKey;
 	private NamespacedKey lsdRecipeKey;
+	private NamespacedKey mdmaRecipeKey;
 	private NamespacedKey coffeeRecipeKey;
 	private NamespacedKey coffeeBeansRecipeKey;
+	public static Location marsSpawn = null;
 
 	@Override
 	public void onDisable() {
 		getLogger().info("ExtraRecipe has now been disabled.");
 	}
 
+	private void createWorlds() {
+        if (!(Bukkit.getWorld("mars") != null)) {
+            WorldCreator creator = new WorldCreator("mars");
+            creator.generator(new Mars());
+            creator.createWorld();
+        }
+    }
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
-
 		
 		// Log version
 		PluginDescriptionFile pdfFile = this.getDescription();
 		getLogger().info( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
 
+		// Load mars
+		getLogger().info("Loading / Creating Mars...");
+		createWorlds();
+		marsSpawn = new Location(Bukkit.getWorld("mars"), 0, 128, 0);
+
 		// Listen for events
 		getLogger().info("Registering extra recipes...");
 		getServer().getPluginManager().registerEvents(this, this);
 
-		getCommand("drugs").setExecutor(new ExtraRecipeCommand());
+		getServer().getPluginManager().registerEvents(new NoBoomListener(), (Plugin)this);
+	//	getCommand("drugs").setExecutor(new SemsDrugsCommand());
 		getCommand("workbench").setExecutor(new WorkbenchCommand());
+		getCommand("drugs").setExecutor(new TeleportAddressCommand());
+
+		// MDMA
+		getLogger().info("Crafting MDMA recipe...");
+		mdmaRecipeKey = new NamespacedKey(this, "MDMARecipe");
+		ItemStack ecstasy = ExtraItem.ECSTASY.getItemStack();
+		ShapedRecipe ecstasyRecipe = new ShapedRecipe(mdmaRecipeKey, ecstasy);
+		ecstasyRecipe.shape("BBB","WEW","BBB");
+		ecstasyRecipe.setIngredient('B', Material.COCOA_BEANS);
+		ecstasyRecipe.setIngredient('E', Material.FERMENTED_SPIDER_EYE);
+		ecstasyRecipe.setIngredient('W', Material.WATER_BUCKET);
+		getServer().addRecipe(ecstasyRecipe);
+
 
 		// LSD
 		getLogger().info("Crafting LSD recipe...");
@@ -69,7 +96,7 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 		getServer().addRecipe(lsdRecipe);
 
 		// COKE
-		this.cokeRecipeKey = new NamespacedKey(this, "CokeRecipe");
+		cokeRecipeKey = new NamespacedKey(this, "CokeRecipe");
 		getLogger().info("Crafting COKE recipe...");
 		ItemStack cocaine = ExtraItem.COCAINE.getItemStack();
 		ShapedRecipe cokeRecipe = new ShapedRecipe(cokeRecipeKey, cocaine);
@@ -154,6 +181,7 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 		}
 		
 		if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK) ) {
+
 			ExtraItem customItem = ExtraItemManager.isCustomItem(consumed);
 			if(customItem != null) {
 				ExtraItemManager.triggerEffect(this, consumer, customItem);
@@ -167,7 +195,14 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 				consumer.setItemInHand(item);
 				consumer.updateInventory();
 			}
+
+			if(action.equals(Action.RIGHT_CLICK_BLOCK)) {
+				Spaceship ship = new Spaceship();
+				ship.fly(e);
+			}
+
 		}
+		
 		
 	}
 
@@ -180,6 +215,7 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 		p.discoverRecipe(this.coffeeBeansRecipeKey);
 		p.discoverRecipe(this.coffeeRecipeKey);
 		p.discoverRecipe(this.lsdRecipeKey);
+		p.discoverRecipe(this.mdmaRecipeKey);
     }
 
 	

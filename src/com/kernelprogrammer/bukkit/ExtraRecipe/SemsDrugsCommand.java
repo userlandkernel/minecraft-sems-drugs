@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
  * Handler for the /extrarecipe sample command.
  * @author userlandkernel
  */
-public class ExtraRecipeCommand implements CommandExecutor {
+public class SemsDrugsCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {
         if (split.length == 0) {
 			if(sender instanceof Player) {

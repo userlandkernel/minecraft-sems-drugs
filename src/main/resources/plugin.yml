@@ -24,12 +24,19 @@ commands:
     permission-message:  Permission semsdrugs.workbench is required to use this command
     usage: /<command> to use the workbench command.
 
+  tpaddress:
+    aliases: ['tpa', 'tpstreet']
+    description: Teleports entities to a street
+    permission-message: Permission semsdrugs.tpaddress is required to use this command
+    usage: /<command> <entity> <streetname> to teleport.
+
 permissions:
   semsdrugs.*:
     description: Gives access to all SemsDrugs commands
     children:
       semsdrugs.workbench: true
       semsdrugs.drugs: true
+      semsdrugs.tpaddress: true
 
   semsdrugs.drugs:
     description: Allows users to learn and craft drugs
@@ -37,4 +44,8 @@ permissions:
 
   semsdrugs.workbench:
     description: Gives access to SemsDrugs workbench command
+    default: op
+
+  semsdrugs.tpaddress:
+    description: Gives access to tpaddress commands
     default: op
