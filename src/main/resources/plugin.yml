@@ -1,0 +1,40 @@
+#
+# Reference
+# https://bukkit.gamepedia.com/Plugin_YAML
+#
+name: SemsDrugs
+main: com.kernelprogrammer.bukkit.ExtraRecipe.ExtraRecipe
+version: 1.0.0
+api-version: 1.17
+website: https://mc.kernelprogrammer.com
+depend: []
+softdepend: []
+
+commands:
+
+  drugs:
+    aliases: ['meds', 'medicine', 'drugs', 'semsdrugs']
+    description: Learn or craft drugs
+    permission-message: Permission semsdrugs.drugs is required to use this command
+    usage: '/<command> to learn about drugs.'
+
+  workbench:
+    aliases: [ 'wb', 'bench']
+    description: This opens a workbench
+    permission-message:  Permission semsdrugs.workbench is required to use this command
+    usage: /<command> to use the workbench command.
+
+permissions:
+  semsdrugs.*:
+    description: Gives access to all SemsDrugs commands
+    children:
+      semsdrugs.workbench: true
+      semsdrugs.drugs: true
+
+  semsdrugs.drugs:
+    description: Allows users to learn and craft drugs
+    default: op
+
+  semsdrugs.workbench:
+    description: Gives access to SemsDrugs workbench command
+    default: op
