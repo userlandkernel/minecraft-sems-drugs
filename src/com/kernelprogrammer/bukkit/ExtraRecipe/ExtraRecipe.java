@@ -67,9 +67,10 @@ public class ExtraRecipe extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this, this);
 
 		getServer().getPluginManager().registerEvents(new NoBoomListener(), (Plugin)this);
-	//	getCommand("drugs").setExecutor(new SemsDrugsCommand());
+		getCommand("drugs").setExecutor(new SemsDrugsCommand());
 		getCommand("workbench").setExecutor(new WorkbenchCommand());
-		getCommand("drugs").setExecutor(new TeleportAddressCommand());
+		TeleportAddressCommand tpaCMD = new TeleportAddressCommand();
+		getCommand("tpaddress").setExecutor(tpaCMD);
 
 		// MDMA
 		getLogger().info("Crafting MDMA recipe...");
