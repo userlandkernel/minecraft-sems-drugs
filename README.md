@@ -1,1 +1,1 @@
-# minecraft-sems-drugs
+# Minecraft Sem's drugs
