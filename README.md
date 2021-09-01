@@ -7,6 +7,6 @@
 
 
 | Drug   |     Drug Effects      |  Comedown |
-|----------|:-------------:|------:|
-| Coffee | - Fast Digging | None |
+|----------|:--------------|:------|
+| Coffee | Fast Digging | None |
     
