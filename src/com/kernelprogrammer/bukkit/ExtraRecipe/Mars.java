@@ -1,15 +1,10 @@
 package com.kernelprogrammer.bukkit.ExtraRecipe;
 import java.util.Random;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 public class Mars extends ChunkGenerator {

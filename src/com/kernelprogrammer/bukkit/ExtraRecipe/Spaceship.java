@@ -41,8 +41,7 @@ public class Spaceship {
 	public Boolean fly(PlayerInteractEvent event) {
 
 		Player captain = event.getPlayer(); // Who is driving the spaceship
-		Location captainLoc = captain.getLocation(); // Where is the captain
-
+		
 		// TODO: Check adjecent block layout and types
 
 		// A captain is also a passenger
