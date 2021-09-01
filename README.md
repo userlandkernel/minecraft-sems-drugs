@@ -6,7 +6,7 @@
 ## Drugs
 
 
-| Drug   |     Drug Effects      |  Comedown |
-|----------|:--------------|:------|
-| Coffee | Fast Digging | None |
+| Drug     | Drug Effects      | Comedown |
+|----------|-----------------------|-----------|
+| Coffee   | Fast Digging          | None      |
     
